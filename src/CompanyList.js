@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 });
+ 
 
 export default class AddPerson extends Component {
   static navigationOptions = {
