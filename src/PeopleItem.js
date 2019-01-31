@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {   Text, View, StyleSheet, Image} from 'react-native';
+import {   Text, View, StyleSheet, Image, TouchableWithoutFeedback} from 'react-native';
 import {connect } from 'react-redux';  
 import { getTheme} from 'react-native-material-kit';
 import Icon from 'react-native-vector-icons/EvilIcons';
@@ -48,11 +48,13 @@ const styles = StyleSheet.create(
 
  const PeopleItem = (props) => {
      return (
+
+        <TouchableWithoutFeedback onPress ={() => prop.selectPerson(people)}>
          <View style={
              [theme.cardStyle, styles.card]
          }>
             <Image 
-            source={{uri:'/Users/pulloh/Desktop/CRMApp/src/images/background.jpg'}}
+            source={{uri: require('./images/background.jpg')}}
             style={
                 [theme.cardImageStyle, styles.image]
             }
@@ -73,6 +75,9 @@ const styles = StyleSheet.create(
             }
             >{props.people.company}</Text>
          </View>
+
+        </TouchableWithoutFeedback>
+        
      )
  }
 
