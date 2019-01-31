@@ -12,6 +12,8 @@ import {connect } from 'react-redux';
 import PeopleItem from './PeopleItem';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import { TabNavigator } from 'react-navigation';
+import PeopleDetail from './PeopleDetail'
+
 
 const styles = StyleSheet.create(
   {
@@ -41,28 +43,41 @@ const styles = StyleSheet.create(
   
 }
 
-  componentWillMount(){
+
+  renderInitialView(){
     const ds = new ListView.DataSource({
 
       rowHasChanged: (r1, r2) => r1 !== r2,
     });
       this.dataSource = ds.cloneWithRows(this.props.people);
+
+      if (this.props.detailView === true){
+        return (
+          <PeopleDetail />
+        );
+      
+      }  else {
+
+        return(
+          <ListView 
+          enableEmptySections = {true}
+          dataSource = {this.dataSource}
+          renderRow={ (rowData) => 
+           <PeopleItem 
+           people={rowData}
+           />
+         }
+          />
+        )
+       
+      }
     
   }
-
-
+  
   render() {
     return (
       <View style={styles.container} >
-         <ListView 
-         enableEmptySections = {true}
-         dataSource = {this.dataSource}
-         renderRow={ (rowData) => 
-          <PeopleItem 
-          people={rowData}
-          />
-        }
-         />
+        {this.renderInitialView()}
  
        </View>
     );
@@ -71,7 +86,9 @@ const styles = StyleSheet.create(
 
 const mapStateToProps = state => {
 
-  return { people: state.people};
+  return { people: state.people,
+          detailView: state.detailView,
+        };
 }
 
 export default connect(mapStateToProps)(PeopleList)
