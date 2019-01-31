@@ -27,7 +27,9 @@ const styles = StyleSheet.create({
 });
 
 export default class AddPerson extends Component {
-  static navigationOptions = {
+  static navigationOptions = {  
+
+    
 
     tabBarLabel: 'Add person',
     tabBarIcon: ({tintColor}) => (
