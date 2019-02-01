@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "devtools":"react-devtools",
+    "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=8081'"
   },
   "dependencies": {
     "firebase": "^5.7.3",
@@ -23,9 +25,10 @@
     "babel-jest": "23.6.0",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.51.1",
-    "react-test-renderer": "16.6.3"
+    "react-test-renderer": "16.6.3",
+    "remote-redux-devtools": "^0.5.16"
   },
   "jest": {
     "preset": "react-native"
   }
-}  
+}
