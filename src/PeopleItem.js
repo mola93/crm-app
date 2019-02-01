@@ -49,12 +49,12 @@ const styles = StyleSheet.create(
  const PeopleItem = (props) => {
      return (
 
-        <TouchableWithoutFeedback onPress ={() => prop.selectPerson(people)}>
+        <TouchableWithoutFeedback onPress ={() => props.selectPerson(props.people)}>
          <View style={
              [theme.cardStyle, styles.card]
          }>
             <Image 
-            source={{uri: require('./images/background.jpg')}}
+            source={require('./images/background.jpg')}
             style={
                 [theme.cardImageStyle, styles.image]
             }
