@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
       marginTop: 10,
       paddingBottom: 20,
       marginBottom: 20,
-      borderColer: 'lightgrey',
+      borderColor: 'lightgrey',
       borderWidth: 0.5,
     },
     title1: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         width: 333,
         backgroundColor: 'transparent',
         justifyContent: 'center',
-        alignItem: 'center',
+        alignItems: 'center',
     },
     closeIcon: {
         position: 'absolute',
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
          this.handleClick('tel:${this.props.person.phone}')
           }}
          >
-        <Image source={require('./images/call@2x.png')} style={styles.actionImage} />
+        <Image source={ require('./images/call.png')} style={styles.actionImage} />
 </TouchableOpacity>
 
 <TouchableOpacity 
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
          this.handleClick('mail:${this.props.person.email}')
           }}
          >
-        <Image source={require('./images/email@2x.png')} style={styles.actionImage} />
+        <Image source={ require('./images/email.png')} style={styles.actionImage} />
 </TouchableOpacity>
 
 
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
          this.handleClick('tel:${this.props.person.phone}')
           }}
          >
-        <Image source={require('./images/call@2x.png')} style={styles.actionImage} />
+        <Image source=  {require('./images/call.png')} style={styles.actionImage} />
 </TouchableOpacity>
 <View style={styles.actionArea}>
               <Text>Call</Text>
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
 // this lifecycle hook makes the data available to the component
 const mapStateToProps = state => {
 
-  return { people: state.people,
+  return { person: state.people,
            personSelected: state.personSelected
 
 };
