@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     image: {
         flex: 0,
         height: 100,
-        width: 333,
+        width: 33,
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
@@ -93,6 +93,8 @@ const styles = StyleSheet.create({
   render() {
     return (
        <ScrollView showsVerticalScrollIndicator= {false}>
+
+       <View style={[theme.cardStyle, styles.card]}>
 
        <Image
              source={require('./images/background.jpg')}
@@ -156,14 +158,15 @@ const styles = StyleSheet.create({
          >
         <Image source=  {require('./images/call.png')} style={styles.actionImage} />
 </TouchableOpacity>
+</View>
 <View style={styles.actionArea}>
               <Text>Call</Text>
               <Text>SMS</Text>
               <Text>Email</Text>
 </View>
 
-</View>
 
+</View>
        </ScrollView>
     );
   }
@@ -173,8 +176,7 @@ const styles = StyleSheet.create({
 // this lifecycle hook makes the data available to the component
 const mapStateToProps = state => {
 
-  return { person: state.people,
-           personSelected: state.personSelected
+  return { person: state.personSelected,
 
 };
 }
