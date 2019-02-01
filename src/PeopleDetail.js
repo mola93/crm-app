@@ -18,6 +18,8 @@ import {getTheme} from 'react-native-material-kit';
 const theme = getTheme();
 
 
+
+
 const styles = StyleSheet.create({
     card: {
       marginTop: 10,
