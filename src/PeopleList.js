@@ -9,11 +9,13 @@
 import React, {Component} from 'react';
 import {   Text, View, StyleSheet, ListView} from 'react-native';
 import {connect } from 'react-redux';  
+import _ from 'lodash';
+
 import PeopleItem from './PeopleItem';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import { TabNavigator } from 'react-navigation';
-import PeopleDetail from './PeopleDetail'
-
+import PeopleDetail from './PeopleDetail';
+import  { loadInitialContact} from './actions';
 
 const styles = StyleSheet.create(
   {
@@ -42,7 +44,9 @@ const styles = StyleSheet.create(
         
   
 }
-
+componentWillMount() {
+  this.props.loadInitialContacts();
+}
 
   renderInitialView(){
     const ds = new ListView.DataSource({
@@ -85,10 +89,13 @@ const styles = StyleSheet.create(
 }
 
 const mapStateToProps = state => {
+  const people = _.map(state.people, (val, uid) => {
+    return { ...val, uid};
+  });
 
-  return { people: state.people,
+  return { people,
           detailView: state.detailView,
         };
 }
 
-export default connect(mapStateToProps)(PeopleList)
+export default connect(mapStateToProps, { loadInitialContacts })(PeopleList)
