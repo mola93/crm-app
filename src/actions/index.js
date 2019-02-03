@@ -1,3 +1,6 @@
+import firebase from 'firebase';
+
+
 export const selectPerson  = (peopleId) => {
 
     return {
@@ -15,5 +18,24 @@ export const nonSelected  = () => {
 
     }
 }
+
+export const formUpdate = ({ prop, value }) => {
+    return {
+        type: 'FORM_UPDATE',
+        payload: { prop, value },
+    };
+};
+
+export const createNewContact = ({ first_name, last_name, phone, email, company, project, notes }) => {
+    const { currentUser } = firebase.auth();
+
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/people`)
+        .push({ first_name, last_name, phone, email, company, project, notes })
+        .then(() => {
+            dispatch({ type: 'NEW_CONTACT' });
+        });
+    };
+};
 
 
