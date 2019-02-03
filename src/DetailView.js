@@ -11,7 +11,7 @@ import EvilIcon from 'react-native-vector-icons/EvilIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
 import { MKTextField, MKColor, MKButton} from 'react-native-material-kit';
-import * as actions from '../actions';
+import * as actions from './actions';
 
 const theme = getTheme();
 
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class DetailsView extends Component {
+class DetailView extends Component {
     handleClick = (link) => {
         Linking.canOpenURL(link).then(suppported => {
             if (supported) {
@@ -103,7 +103,7 @@ class DetailsView extends Component {
         });
     };
 
-    updateTest() {
+    updatePerson() {
         this.props.updateContact(this.props.person);
     }
 
@@ -112,7 +112,7 @@ class DetailsView extends Component {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={[theme.cardStyle, styles.card]}>
         <Image 
-            source={require('../images/background.jpg')}
+            source={require('./images/background.jpg')}
             style={[theme.cardImageStyle, styles.image]}
         />
         <EvilIcon name={'user'} size={100} style={styles.icon}/>
@@ -138,7 +138,7 @@ class DetailsView extends Component {
         </View>
         <View style={styles.editArea}>
             <TouchableOpacity style={styles.sections}
-            onPress={() => {this.updateTest() }}>
+            onPress={() => {this.updatePerson() }}>
                <MaterialIcon name={'autorenew'} size={40} style={styles.editIcon}/>
                <Text style={theme.cardContentStyle}>EDIT</Text>
             </TouchableOpacity> 
@@ -152,17 +152,17 @@ class DetailsView extends Component {
             <TouchableOpacity
                 onPress={() => { this.handleClick(`tel:${this.props.person.phone}`)}}
             >
-                <Image source={require('../images/call@2x.png')} style={styles.actionImage}/>
+        <Image source={ require('./images/call.png')} style={styles.actionImage} />
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => { this.handleClick(`sms:${this.props.person.phone}`)}}
             >
-                <Image source={require('../images/sms@2x.png')} style={styles.actionImage}/>
+        <Image source={ require('./images/email.png')} style={styles.actionImage} />
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => { this.handleClick(`mailto:${this.props.person.email}`)}}
             >
-                <Image source={require('../images/email@2x.png')} style={styles.actionImage}/>
+        <Image source={ require('./images/email.png')} style={styles.actionImage} />
             </TouchableOpacity>
         </View>
         <View style={styles.actionArea}>
@@ -183,4 +183,4 @@ const mapStateToProps = state => {
    };
 };
 
-export default connect(mapStateToProps, actions)(DetailsView);
+export default connect(mapStateToProps, actions)(DetailView);
