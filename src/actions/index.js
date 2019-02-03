@@ -38,4 +38,13 @@ export const createNewContact = ({ first_name, last_name, phone, email, company,
     };
 };
 
+export const loadInitialContacts = () => {
+    const { currentUser } = firebase.auth();
 
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/people`)
+        .on('value', snapshot => {
+            dispatch({ type: 'INITIAL_FETCH', payload: snapshot.val() });
+        });
+    };
+};
