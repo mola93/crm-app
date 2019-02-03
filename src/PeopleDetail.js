@@ -14,6 +14,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
 import * as actions from './actions';
 import {getTheme} from 'react-native-material-kit';
+import { MKTextField, MKColor, MKButton} from 'react-native-material-kit';
 
 const theme = getTheme();
 
@@ -75,6 +76,26 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
     },
+    editIcon: {
+        color: '#26a6e4',
+    },
+    sections: {
+        flexDirection:  'row',
+        paddingLeft: 10,
+        paddingTop: 10,
+        width: 100,
+    },
+    deleteIcon: {
+        color: '#e9a69a',
+    },
+    editDeleteArea: {
+      flexDirection:  'row',
+      paddingRight: 20,
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      backgroundColor: 'rgba(211,211,211, 0.3)',
+      marginBottom: 10,
+    },
   });
   
  class PeopleDetail extends Component {
@@ -129,6 +150,25 @@ const styles = StyleSheet.create({
             <MaterialIcon name={'mode-edit'} size={40} style={styles.textIcons} />
             <Text style={[theme.cardContentStyle]}> {this.props.person.notes} </Text>
 
+        </View>
+        <View style={styles.editDeleteArea}>
+            <TouchableOpacity 
+               style={styles.sections}
+             >
+                 <MaterialIcon name={'autorenew'} size={40} style={styles.editIcon} />
+
+                 <Text style={theme.cardContentStyle}>EDIT</Text>
+
+            </TouchableOpacity>
+            <TouchableOpacity 
+               style={styles.sections} 
+               onPress={()=> {this.props.deleteContact(this.props.person.uid)}}
+             >
+                 <MaterialIcon name={'delete-forever'} size={40} style={styles.editIcon} />
+
+                 <Text style={theme.cardContentStyle}>DELETE</Text>
+
+            </TouchableOpacity>
         </View>
 <View style={styles.actionArea}>
  <TouchableOpacity 
