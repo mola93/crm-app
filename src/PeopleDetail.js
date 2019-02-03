@@ -15,6 +15,10 @@ import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
 import * as actions from './actions';
 import {getTheme} from 'react-native-material-kit';
 import { MKTextField, MKColor, MKButton} from 'react-native-material-kit';
+import DetailView from './DetailView';
+import UpdatePerson from './UpdatePerson';
+
+
 
 const theme = getTheme();
 
@@ -99,115 +103,21 @@ const styles = StyleSheet.create({
   });
   
  class PeopleDetail extends Component {
-  handleClick = (link) => {
-      Linking.canOpenURL(link).then( supported => {
-          if (supported) {
-              Linking.openURL(link)
-          } else {
-              console.log('Don\'t know how to open URI: ' + link);
-          }
-      })
-  }
-
-
+ 
+    renderDetails() {
+        if (this.props.toUpdate) {
+            return <UpdatePerson />;
+        } else {
+            return <DetailView />;
+        }
+    }
 
   render() {
     return (
-       <ScrollView showsVerticalScrollIndicator= {false}>
+    <View>
+          {this.renderDetails()}
 
-       <View style={[theme.cardStyle, styles.card]}>
-
-       <Image
-             source={require('./images/background.jpg')}
-             style={[theme.cardImageStyle, styles.image]}
-       />
-       <EvilIcon name={'user'} size={100} style={styles.icon} />
-       <SimpleIcon name={'close'} size={30} style={styles.closeIcon}
-            onPress={() => {
-                this.props.nonSelected()
-            }}
-       />
-       <Text style={[theme.cardTitleStyle, styles.title1]}> {this.props.person.first_name} {this.props.person.last_name} </Text>
-       <Text style={[theme.cardTitleStyle, styles.title2]}> from {this.props.person.company} </Text>
-        <View>
-            <MaterialIcon name={'phone'} size={40} style={styles.textIcons} />
-            <Text style={[theme.cardContentStyle]}> {this.props.person.phone} </Text>
-
-        </View>
-
-        <View>
-            <MaterialIcon name={'email'} size={40} style={styles.textIcons} />
-            <Text style={[theme.cardContentStyle]}> {this.props.person.email} </Text>
-
-        </View>
-
-        <View>
-            <MaterialIcon name={'assignment'} size={40} style={styles.textIcons} />
-            <Text style={[theme.cardContentStyle]}> {this.props.person.project} </Text>
-
-        </View>
-        <View>
-            <MaterialIcon name={'mode-edit'} size={40} style={styles.textIcons} />
-            <Text style={[theme.cardContentStyle]}> {this.props.person.notes} </Text>
-
-        </View>
-        <View style={styles.editDeleteArea}>
-            <TouchableOpacity 
-               style={styles.sections}
-             >
-                 <MaterialIcon name={'autorenew'} size={40} style={styles.editIcon} />
-
-                 <Text style={theme.cardContentStyle}>EDIT</Text>
-
-            </TouchableOpacity>
-            <TouchableOpacity 
-               style={styles.sections} 
-               onPress={()=> {this.props.deleteContact(this.props.person.uid)}}
-             >
-                 <MaterialIcon name={'delete-forever'} size={40} style={styles.editIcon} />
-
-                 <Text style={theme.cardContentStyle}>DELETE</Text>
-
-            </TouchableOpacity>
-        </View>
-<View style={styles.actionArea}>
- <TouchableOpacity 
-          onPress={() => {
-
-         this.handleClick('tel:${this.props.person.phone}')
-          }}
-         >
-        <Image source={ require('./images/call.png')} style={styles.actionImage} />
-</TouchableOpacity>
-
-<TouchableOpacity 
-          onPress={() => {
-
-         this.handleClick('mail:${this.props.person.email}')
-          }}
-         >
-        <Image source={ require('./images/email.png')} style={styles.actionImage} />
-</TouchableOpacity>
-
-
-<TouchableOpacity 
-          onPress={() => {
-
-         this.handleClick('tel:${this.props.person.phone}')
-          }}
-         >
-        <Image source=  {require('./images/call.png')} style={styles.actionImage} />
-</TouchableOpacity>
-</View>
-<View style={styles.actionArea}>
-              <Text>Call</Text>
-              <Text>SMS</Text>
-              <Text>Email</Text>
-</View>
-
-
-</View>
-       </ScrollView>
+    </View>
     );
   }
 }
@@ -216,7 +126,7 @@ const styles = StyleSheet.create({
 // this lifecycle hook makes the data available to the component
 const mapStateToProps = state => {
 
-  return { person: state.personSelected,
+  return { toUpdate: state.toUpdate,
 
 };
 }
