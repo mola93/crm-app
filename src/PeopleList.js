@@ -15,7 +15,7 @@ import PeopleItem from './PeopleItem';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import { TabNavigator } from 'react-navigation';
 import PeopleDetail from './PeopleDetail';
-import  { loadInitialContact} from './actions';
+import  { loadInitialContacts} from './actions';
 
 const styles = StyleSheet.create(
   {
