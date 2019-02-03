@@ -12,19 +12,22 @@ import React, {Component} from 'react';
 import Login from './src/Login';
 import Loader from './src/Loader';
  import {Provider} from 'react-redux';
- import { createStore, applyMiddleware} from 'redux';
+ import { createStore,compose, applyMiddleware} from 'redux';
  import reducers from './src/reducers/PeopleReducer';
 import MainNavigator from './src/Navigation';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import Thunk from 'redux-thunk';
+import thunk from 'redux-thunk';
 
 
 console.disableYellowBox = true;
 
-const store = createStore(reducers, composeWithDevTools(), applyMiddleware(Thunk));
- 
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-// ouyoo
+const store = createStore(
+  reducers,
+  composeEnhancer(applyMiddleware(thunk)),
+);
+
 
 
 export default class App extends Component {
