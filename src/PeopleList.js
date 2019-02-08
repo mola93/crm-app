@@ -22,7 +22,7 @@ const styles = StyleSheet.create(
       flex:1,
       width:353,
       flexWrap:'wrap',
-      paddingTop:20,
+      paddingTop:50,
       paddingLeft:20,
     },
   }
@@ -30,8 +30,8 @@ const styles = StyleSheet.create(
 
  class PeopleList extends Component {
 
-  static navigationOptions = {
-
+  static navigationOptions = { 
+       
         tabBarLabel: 'People',
         tabBarIcon: ({tintColor}) => (
           <Icon 
