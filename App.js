@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-
+import {Header} from 'react-native-elements';
  import firebase from 'firebase';
 import Login from './src/Login';
 import Loader from './src/Loader';
@@ -74,7 +74,9 @@ export default class App extends Component {
     return (
       <Provider store={store}>
 
-           
+<Header
+  centerComponent={{ text: 'CRM-APP', style: { color: '#fff' } }}
+/>
          {this.renderInitialView()}
          
       </Provider>
