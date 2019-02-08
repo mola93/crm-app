@@ -34,9 +34,11 @@ const store = createStore(
 
 export default class App extends Component {
 
-  state = {loggedIn: null};
+  state = {loggedIn: null,
+           posts: null     
+  };
 
-  componentWillMount(){
+  componentDidMount(){
     firebase.initializeApp(
       {
         apiKey: "AIzaSyAE9XIFxAON1UrkQx4Miw_3cXy6fSm7CtQ",
