@@ -15,7 +15,7 @@ import AddPerson from './AddPerson';
          activeTintColor:'white',
          inactiveTintColor: '#80cbc4',
          swipeEnabled: true,
-         showLabel: false,
+         showLabel: true,
          style: {
              backgroundColor: '#26a69a',
          },
